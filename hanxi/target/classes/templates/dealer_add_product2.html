@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>韩曦经销商管理端</title>
+    <!-- Google font file. If you want you can change. -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900" rel="stylesheet">
+    <!-- Fontawesome font file css -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <!-- Animate css file for css3 animations. for more : https://daneden.github.io/animate.css -->
+    <!-- Only use animate action. If you dont use animation, you don't have to add.-->
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/cryptocoins.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/c3-chart/c3.css">
+    <!-- Template global css file. Requared all pages -->
+    <link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+    <!-- Swiper slider css file -->
+    <link rel="stylesheet" href="../static/css/swiper.min.css">
+    <!--turbo slider plugin css file -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/turbo-slider/turbo.css">
+</head>
+<body>
+<div class="wrapper ">
+    <div class="nav-menu">
+        <nav class="menu">
+            <!-- Menu navigation start -->
+            <div class="nav-container">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+                        <ul>
+                            <li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+                            <li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+                    </li>
+                    <li>
+                        <a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+                    </li>
+                    <li>
+                        <a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Menu navigation end -->
+        </nav>
+    </div>
+    <div class="wrapper-inline">
+        <!-- Header area start -->
+        <header class="no-background"> <!-- extra class no-background -->
+            <a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+            <div class="navi-menu-button">
+                <em></em>
+                <em></em>
+                <em></em>
+            </div>
+        </header>
+        <!-- Header area end -->
+        <!-- Page content start -->
+        <main class="margin mt-0" id="main">
+            <div class="dash-balance">
+                <div class="dash-content relative">
+                    <h3 class="w-text">进货</h3>
+                </div>
+            </div>
+            <section class="container">
+                <h4 class="title-main mt-5 text-muted mb-10 font-weight-medium">上级经销商库存列表</h4>
+
+                <!--表格尝试-->
+                <div class="table-responsive" v-show="flage" >
+                    <table  class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <th>商品名称</th>
+                        <th>商品库存</th>
+                        <th>商品单价</th>
+                        <th>点击进货</th>
+                        </thead>
+                        <tbody>
+                        <tr  v-for="r in rows">
+                            <td>
+                                {{r.productName}}
+                            </td>
+                            <td>{{r.count}}</td>
+                            <td>{{r.price}}</td>
+
+
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                    <button class="btn btn-xs btn-info" @click="showInfo(r)">
+                                        <i class="icon-edit bigger-120">进货</i>
+                                        <!--点击打开进货表单-->
+                                    </button>
+
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                、<!-- /.table-responsive -->
+                <!--表格尝试 -->
+                <!--表单尝试-->
+                <div class="container" v-show="!flage">
+                    <div class="row clearfix">
+                        <div class="col-sm-4 column">
+                        </div>
+                        <div class="col-sm-4 column">
+                           <!-- <form role="form" action="/orders/createOrders">-->
+                                <div class="form-group">
+                                    <label for="productName">商品名称</label><input type="text" class="form-control" name="productName" id="productName" readonly=true  v-model="productName"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="buyProductNum">订购数量
+                                    </label><input type="number" class="form-control" id="buyProductNum" name="buyProductNum" v-model="buyProductNum" min="1" v-bind:max="productNum"  @click="newShouldPay" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="shouldPay">应付金额</label>
+                                    <input type="text" class="form-control" id="shouldPay" name="shouldPay" v-model="shouldPay" readonly=true />
+                                </div>
+                            <div class="form-group">
+                                <label for="ordesGetAdress">收货地址</label>
+                                <input type="text" class="form-control" id="ordesGetAdress" name="ordesGetAdress"  v-model="address"  />
+                            </div>
+                            <div class="form-group">
+                                <label for="ordesRemarks">订单备注</label>
+                                <input type="text" class="form-control" id="ordesRemarks" name="ordesRemarks" v-model="ordesRemarks"  />
+                            </div>
+
+                                <button type="submit" class="btn btn-primary col-sm-4 " id="createOrdes" @click="createOrdes" >下单</button>
+                            <!-- -->
+                            <span class="col-sm-4 "></span>
+                                   <span class="col-sm-4 ">
+                                       <button type="" class="btn btn-warning col-sm-4 "@click="hidden">返回</button>
+                                   </span>
+
+
+                            <!--</form>-->
+                        </div>
+                        <div class="col-md-4 column">
+                        </div>
+                    </div>
+                </div>
+                <!--表单尝试-->
+            </section>
+            <footer>
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+                </div>
+            </footer>
+        </main>
+        <!-- Page content end -->
+    </div>
+</div>
+<!--Page loader DOM Elements. Requared all pages-->
+<div class="sweet-loader">
+    <div class="box">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</div>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/vue/vue.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        var address ;//当前登录用户的地址
+        var dealerId ; // 当前登录用户的id（进货订单的收货id）
+
+        $.post("/dealer/getCurDealer",function (obj) {
+            address = obj.address;
+            dealerId = obj.id;
+
+        },"json");
+
+
+        $.getJSON('dealer/father_product_list', function (result, status) {
+            var v = new Vue({
+                el: '#main',
+                data: {
+                    rows: result,//后端返回的查询结果集合
+                    flage: true , // 控制表格与表单的显示
+                   // productName: null ,
+                    productCount: null ,//进货前库存
+                    productPrice: null ,
+                    buyProductNum: 1 ,
+                    shouldPay: null ,
+                    sendDealerId:null,
+                    ordesRemarks:null,
+                    address: address,  // 收货地址
+                    getDealerId:dealerId, // 收货人id
+                    dealerStockId:null , //货源库存id
+                },
+                methods:{
+                    showInfo: function (r) {
+                       // alert("这个时候应该显示表单");
+                        this.flage = !this.flage;
+                        this.productName = r.productName;
+                        this.productCount = r.count;
+                        this.productPrice = r.price ;//上级库存定价
+                        this.shouldPay = this.productPrice * this.buyProductNum ;
+                        //创建订单信息
+                        this.productId = r.productId ;
+
+                        this.sendDealerId = r.dealerId;
+
+                        this.dealerStockId = r.dealerStorkId; //货源库存id
+                    },
+                    newShouldPay:function () {
+
+                        this.shouldPay = this.productPrice * this.buyProductNum;
+                    },
+                    hidden:function () {
+                        this.flage = !this.flage;
+                    },
+                    createOrdes: function () {
+
+                       // var productName=document.getElementById("productName").value;
+
+                        //写入订单信息
+                        var productId=this.productId;  // 订购商品ID
+                        var buyProductNum=this.buyProductNum; //订购商品数量
+                        var sendDealerId = this.sendDealerId; // 发货经销商ID
+                        var sendProductPrice = this.productPrice; // 订购商品单价
+                        var address = this.address ;  //订单收货地址
+                        var ordersState = "未发货" ; //订单状态
+                        var remarks = this.ordesRemarks; // 订单备注
+                        var dealerStockId = this.dealerStockId ;//货源库存id
+                        var newDealerStockProductCount = this.productCount - this.buyProductNum; //新货源库存
+
+                        var ordes={
+                            "count":buyProductNum,
+                            "remarks":remarks,
+                            "price":sendProductPrice,
+                            "state":ordersState,
+                            "sendDealerId":sendDealerId,
+                            "productId":productId,
+                            "address":address,
+                            "getDealerId":dealerId,
+                            "dealerStockId":dealerStockId,
+                            "newDealerStockProductCount":newDealerStockProductCount,
+
+                        };
+                        //步驟一:創建異步對象s
+                        var ajax = new XMLHttpRequest();
+                        //步驟二:設置請求的url參數,參數一是請求的類型,參數二是請求的url,可以帶參數,動態的傳遞參數starName到服務端
+                        ajax.open("post", "/orders/createOrders",true);
+                        ajax.setRequestHeader("Content-type","application/json; charset=utf-8");
+                        //步驟三:發送請求
+                        ajax.send(JSON.stringify(ordes));
+                        //步驟四:注冊事件 onreadystatechange 狀態改變就會調用
+                        ajax.onreadystatechange = function () {
+                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                  if(ajax.responseText == 1){
+                                      alert("下单成功");
+                                  }
+                              //刷新页面显示最新库存
+                                window.location.href="/dealer_add_product2.html";
+                            }else{
+                                //alert("ajax请求失败");
+                            }
+                        }
+        }
+
+                }
+            })
+        });
+
+
+
+
+    }
+
+
+    );
+
+
+
+</script>
+<!-- JQuery library file. requared all pages -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!-- Swiper JS -->
+<script src="../static/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<!-- c3 Charts -->
+<script src="../static/plugins/c3-chart/c3.min.js"></script>
+<script src="../static/plugins/c3-chart/d3.min.js"></script>
+<script src="../static/plugins/c3-chart/c3.custom.js"></script>
+<!-- Flot Charts -->
+<script src="../static/plugins/flot/jquery.flot.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- Sparkline-->
+<script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+<!-- Template global script file. requared all pages -->
+<script src="../static/js/app-charts.js"></script>
+<script src="../static/js/global.script.js"></script>
+</body>
+</html>

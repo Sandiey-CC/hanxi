@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bcjd.hanxi.mapper.DealerStockMapper">
+    <resultMap id="BaseResultMap" type="DealerStock">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="dealer_id" jdbcType="INTEGER" property="dealerId"/>
+        <result column="product_id" jdbcType="INTEGER" property="productId"/>
+    </resultMap>
+
+    <!--进货相关start-->
+    <select id="selectAllStockProductsByDealerId" resultType="com.bcjd.hanxi.pojo.DealerStockShortDdata">
+            SELECT  dealer_stock.count  count,
+             dealer_stock.price      price,
+             product.product_name    productName,
+             product.id              productId,
+             dealer_stock.dealer_id  dealerId  ,
+             dealer_stock.id       dealerStorkId
+            FROM `dealer_stock` inner JOIN product ON dealer_stock.product_id = product.id WHERE dealer_stock.dealer_id=#{Dealerid};
+
+    </select>
+
+    <update id="updateStockCountById">
+		update `dealer_stock`
+		set count = #{newCount},
+		update_time =  #{updateTime, jdbcType=TIMESTAMP}
+		where id = #{id}
+	</update>
+    <!--进货相关end-->
+
+</mapper>

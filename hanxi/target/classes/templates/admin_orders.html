@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>韩曦后台管理系统</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <!-- basic styles -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../static/css/font-awesome-ie7.min.css"/>
+    <![endif]-->
+    <!-- page specific plugin styles -->
+    <!-- fonts -->
+    <!-- ace styles -->
+    <link href="../static/css/ace.min.css" rel="stylesheet"/>
+    <link href="../static/css/ace-rtl.min.css" rel="stylesheet"/>
+    <link href="../static/css/ace-skins.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/dealerList.showInfo.css">
+    <link rel="stylesheet" href="../static/css/common.showInfo.css">
+    <link rel="stylesheet" href="../static/css/layui.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../static/css/ace-ie.min.css"/>
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    <script src="../static/js/ace-extra.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="#">
+                <small>
+                    <i class="icon-leaf"></i>
+                    韩曦后台管理
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <img class="nav-user-photo" src="../static/img/content/avatar/user-1.png" alt="Jason's Photo"/>
+                        <span class="user-info">
+									<small>Welcome,</small>
+									<span id="curName">请登录</span>
+								</span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="icon-cog"></i>
+                                设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:exit();">
+                                <i class="icon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" href="#" id="menu-toggler">
+            <span class="menu-text"></span>
+        </a>
+        <div class="sidebar" id="sidebar">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'fixed')
+                } catch (e) {
+                }
+            </script>
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="icon-signal"></i>
+                    </button>
+                    <button class="btn btn-info">
+                        <i class="icon-pencil"></i>
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="icon-group"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="icon-cogs"></i>
+                    </button>
+                </div>
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+                    <span class="btn btn-info"></span>
+                    <span class="btn btn-warning"></span>
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- #sidebar-shortcuts -->
+            <ul class="nav nav-list">
+                <li>
+                    <a href="admin_index.html">
+                        <i class="icon-dashboard"></i>
+                        <span class="menu-text"> 控制台 </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" href="#">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text"> 管理员 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_index.html">
+                                <i class="icon-double-angle-right"></i>
+                                管理员列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_addAdmins.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加管理员
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" href="#">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 经销商 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin-dealer_list.html">
+                                <i class="icon-double-angle-right"></i>
+                                经销商列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_addDealers.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加经销商
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li >
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list-alt"></i>
+                        <span class="menu-text"> 商品 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                商品列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加商品
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active open">
+                    <a class="dropdown-toggle" href="#">
+                        <i class="icon-edit"></i>
+                        <span class="menu-text"> 订单 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu" id="nav">
+                        <li value="全部">
+                            <a href="admin_orders.html">
+                                <i class="icon-double-angle-right"></i>
+                                全部订单
+                            </a>
+                        </li>
+                        <li value="未发货">
+                            <a href="admin_orders.html?state=未发货">
+                                <i class="icon-double-angle-right"></i>
+                                未发货订单
+                            </a>
+                        </li>
+                        <li value="已发货">
+                            <a href="admin_orders.html?state=已发货">
+                                <i class="icon-double-angle-right"></i>
+                                已发货订单
+                            </a>
+                        </li>
+                        <li value="已完成">
+                            <a href="admin_orders.html?state=已完成">
+                                <i class="icon-double-angle-right"></i>
+                                已完成订单
+                            </a>
+                        </li>
+                        <li value="异常">
+                            <a href="admin_orders.html?state=异常">
+                                <i class="icon-double-angle-right"></i>
+                                异常订单
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" href="#">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 更多 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="faq.html">
+                                <i class="icon-double-angle-right"></i>
+                                帮助
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.nav-list -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                   data-icon2="icon-double-angle-right"></i>
+            </div>
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'collapsed')
+                } catch (e) {
+                }
+            </script>
+        </div>
+        <div class="main-content" id="main">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home home-icon"></i>
+                        <a href="#">主页</a>
+                    </li>
+                    <li>
+                        <a href="#">订单</a>
+                    </li>
+                    <li class="active">{{state}}订单</li>
+                </ul><!-- .breadcrumb -->
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input autocomplete="off" class="nav-search-input" id="nav-search-input"
+                                           placeholder="Search ..." type="text"/>
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div><!-- #nav-search -->
+            </div>
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div>
+                            <div class="search">
+                                <form id="searchForm" action="#" method="post" onsubmit="return false">
+                                    <div class="layui-form-item" >
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <select name="type" id="type">
+                                                    <option value="" selected=""></option>
+                                                    <option value="id">Id</option>
+                                                    <option value="send_dealer_id">上级发货Id</option>
+                                                    <option value="get_dealer_id">下级拿货Id</option>
+                                                    <option value="product_id">商品Id</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="key" id="key" autocomplete="off" placeholder="请输入关键词" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <button type="submit" class="layui-btn" lay-submit="" @click="searchByTypeAndKey">搜索</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="table-responsive">
+
+                                <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+
+                                    <thead>
+                                    <tr>
+                                        <th class="center">
+                                            <label>
+                                                <input @click="selectAll" type="checkbox" class="ace"/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th>Id</th>
+                                        <th>创建时间</th>
+                                        <th>完成时间</th>
+                                        <th>地址</th>
+                                        <th>数量</th>
+                                        <th>备注</th>
+                                        <th>价格</th>
+                                        <th>状态</th>
+                                        <th>上级发货Id</th>
+                                        <th>商品Id</th>
+                                        <th>下级拿货Id</th>
+                                        <th>操作
+                                            <button class="btn btn-sm btn-danger" @click="deleteManyOrder">
+                                                批量删除
+                                            </button>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <!-- 单行内容 -->
+                                    <tr v-for=" d in lists">
+                                        <td class="center">
+                                            <label>
+                                                <input type="checkbox" name="orderlist" class="ace" :value="d.id"/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+                                        <th>{{d.id}}</th>
+                                        <th>{{d.createTime | formatTime}}</th>
+                                        <th>{{d.completeTime| formatTime}}</th>
+                                        <th>{{d.address}}</th>
+                                        <th>{{d.count}}</th>
+                                        <th>{{d.remarks}}</th>
+                                        <th>{{d.price}}</th>
+                                        <th>{{d.state}}</th>
+                                        <th>{{d.sendDealerId}}</th>
+                                        <th>{{d.productId}}</th>
+                                        <th>{{d.getDealerId}}</th>
+                                        <td>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons" v-if="d.state==='未发货'">
+                                                <a class="green" v-on:click="showInfo(d)">
+                                                    <i class="icon-pencil bigger-130"></i>
+                                                </a>
+                                                <a class="red" @click="deleteOneOrder(d.id)">
+                                                    <i class="icon-trash bigger-130"></i>
+                                                </a>
+                                            </div>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"  v-else>
+                                                <a class="red" @click="deleteOneOrder(d.id)">
+                                                    <i class="icon-trash bigger-130"></i>
+                                                </a>
+                                            </div>
+                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                <div class="inline position-relative">
+                                                    <button class="btn btn-minier btn-yellow dropdown-toggle"
+                                                            data-toggle="dropdown">
+                                                        <i class="icon-caret-down icon-only bigger-120"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a class="tooltip-info" data-rel="tooltip" href="#"
+                                                               title="View">
+																				<span class="blue">
+																					<i class="icon-zoom-in bigger-120"></i>
+																				</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="tooltip-success" data-rel="tooltip" href="#"
+                                                               title="Edit">
+																				<span class="green">
+																					<i class="icon-edit bigger-120"></i>
+																				</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="tooltip-error" data-rel="tooltip" href="#"
+                                                               title="Delete">
+																				<span class="red">
+																					<i class="icon-trash bigger-120"></i>
+																				</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- end单行内容 -->
+
+                                    </tbody>
+                                </table>
+                            </div><!-- /.table-responsive -->
+                            <!--分页-->
+                            <nav aria-label="Page navigation" class="text-center">
+                                <ul class="pagination">
+                                    <li v-on:click="prePage()">
+                                        <a aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li v-for="index in page.pages"
+                                        v-on:click="curPage(index)"
+                                        :class="page.pageNo==index? 'active':''">
+                                        <a>{{index}}</a>
+                                    </li>
+                                    <li v-on:click="nextPage()">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+    </div><!-- /.main-container-inner -->
+
+
+    <a class="btn-scroll-up btn btn-sm btn-inverse" href="#" id="btn-scroll-up">
+
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+
+    </a>
+
+    <div class="showInfo" id="showInfo">
+        <div class="content">
+            <div class="info_header">
+                <h4>修改经销商信息</h4>
+                <div id="header-right" onclick="hidder()">X</div>
+            </div>
+            <hr/>
+            <div class="info">
+                <input type="hidden" id="id">
+                <table>
+                    <tr>
+                        <td> <label>上&nbsp;&nbsp;&nbsp;级&nbsp;&nbsp;&nbsp;经&nbsp;&nbsp;&nbsp;销&nbsp;&nbsp;&nbsp;商：</label></td>
+                        <td><input type="text" id="sendDealerId" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td><label>创&nbsp;&nbsp;&nbsp;建&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;&nbsp;间：</label></td>
+                        <td><input type="text" id="createTime" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td><label>商&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;称：</label></td>
+                        <td><input type="text" id="productId" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td><label>商&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;量：</label></td>
+                        <td><input type="text" id="count"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>发&nbsp&nbsp送&nbsp&nbsp地&nbsp&nbsp址：</label></td>
+                        <td><input type="text" id="address"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>备&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;注：</label></td>
+                        <td><input type="text" id="remarks" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td><label>商&nbsp;&nbsp;品&nbsp&nbsp;&nbsp;价&nbsp;&nbsp;&nbsp;&nbsp;格：</label></td>
+                        <td><input type="text" id="price" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td><label>订&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;态：</label></td>
+                        <td>
+                            <select id="state" >
+                                <option value="未发货" checked="checked">未发货</option>
+                                <option value="已发货">已发货</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>下&nbsp;&nbsp;级&nbsp;&nbsp;经&nbsp;&nbsp;销&nbsp;&nbsp;&nbsp;商：</label></td>
+                        <td><input type="text" id="getDealerId" readonly/><br/></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><button class="btn btn-primary" onclick="changeInfo()">修改</button></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../static/js/jquery.min.js"></script>
+<![endif]-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script src='../static/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="../static/js/typeahead-bs2.min.js"></script>
+<!-- page specific plugin scripts -->
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/jquery.dataTables.bootstrap.js"></script>
+<!-- ace scripts -->
+<script src="../static/js/ace-elements.min.js"></script>
+<script src="../static/js/ace.min.js"></script>
+<!-- inline scripts related to this page -->
+<script src="../static/vue/qs.min.js"></script>
+<script src="../static/vue/vue.js"></script>
+<script src="../static/vue/axios.min.js"></script>
+
+<script type="text/javascript">
+    //全局时间过滤器
+    Vue.filter("formatTime",function (time) {
+        let date = new Date(time).toLocaleString();
+        return date;
+    });
+
+    $(function() {
+        $('#nav').find('li').each(function() {
+            var stateValue = typeof (getState().state) == 'undefined' ? '全部':decodeURI(getState().state);
+            console.log(stateValue);
+
+            if ($(this).attr("value")==stateValue){
+                $(this).addClass('active');
+            }
+        });
+
+    });
+
+    jQuery(function($) {
+        //排序
+        var oTable1 = $('#sample-table-2').dataTable( {
+        //初始化时定义哪一列可以排序
+            "aoColumns": [
+                { "bSortable": false },
+                null, null,null, null, null,null, null,null, null, null,null,
+                { "bSortable": false }
+            ] } );
+
+            //全选
+        $('table th input:checkbox').on('click' , function(){
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+        });
+
+        //选项卡内容
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+            var off2 = $source.offset();
+            var w2 = $source.width();
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+    });
+
+
+    $(function () {
+        $.post("../admin/getCurAdmin",function(obj){
+            $("#curName").html(obj.adminName);
+        },"json");
+
+        var theparmObj =getState();
+        $.getJSON('orders/getOrdersList?state='+theparmObj.state,function (result,status) {
+            var v = new Vue({
+                el:"#main",
+                data:{
+                    data:result,
+                    toSelect:[],
+                    state:typeof(theparmObj.state) == 'undefined' ? '全部':decodeURI(theparmObj.state),
+                    lists:[],  //列表数据
+                    page:{
+                        pages:1,   //总页数
+                        total:1,        //总条数
+                        pageNo:1,      //页码
+                        pageSize:5,    //每页的条数
+                    }
+                },
+                methods:{
+                    getLists:function (i) {
+                        this.page.pageNo=i || this.page.pageNo;
+                        axios({
+                            method:"get",
+                            url:"http://localhost:8080/orders/PageHelper?pageNum="+this.page.pageNo+"&pageSize=5"
+                        }).then(res=>{
+                            console.log(res);
+                            this.lists=res.data.list;    //列表数据
+                            this.page.pages=res.data.pages;  //总页数
+                            this.page.total=res.data.total;    //总条数
+                        }).catch(function (error) {
+                            console.log("请求失败")
+                        })
+                    },
+                    curPage:function(index) {   //当前页
+                        this.getLists(index);
+                    },
+                    prePage:function() {   //上一页
+                        if (this.page.pageNo>1){
+                            this.page.pageNo--;
+                            this.getLists(this.page.pageNo);
+                        }
+                    },
+                    nextPage:function() {   //下一页
+                        if (this.page.pageNo<this.page.pages){
+                            this.page.pageNo++;
+                            this.getLists(this.page.pageNo);
+                        }
+                    },
+                    searchByTypeAndKey(){
+                        var type = $("#type option:selected").val();
+                        var searchKey = $('#key').val();
+
+                        alert("type:" + type+ "searchkey:" +searchKey);
+                        axios.get('http://localhost:8080/orders/getOrdersListByKey?type='+type+'&key='+searchKey).then(data =>{
+                            console.log(data)
+                            this.lists = data.data;
+                        }).catch(error => {
+                            console.log(error);
+                        })
+                    },
+                    showInfo:function (e) {
+                        document.getElementById('showInfo').style.display="inline";
+                        document.getElementById('id').value=e.id;
+                        document.getElementById('sendDealerId').value=e.sendDealerId;
+                        document.getElementById('createTime').value=e.createTime;
+                        document.getElementById('productId').value=e.productId;
+                        document.getElementById('address').value=e.address;
+                        document.getElementById('count').value=e.count;
+                        document.getElementById('remarks').value=e.remarks;
+                        document.getElementById('price').value=e.price;
+                        document.getElementById('state').value=e.state;
+                        document.getElementById('getDealerId').value=e.getDealerId;
+                    },
+                    selectAll(event){
+                        let theSelect = document.getElementsByName("orderlist");
+                        if (event.target.checked){
+                            for (let i=0;i<theSelect.length;i++){
+                                theSelect[i].checked = true;
+                                this.toSelect.push(theSelect[i].value);
+                            }
+                        }else {
+                            this.selectNone(theSelect);
+                        }
+                    },
+                    selectNone(noneSelect){
+                        for (let i=0;i<noneSelect.length;i++){
+                            noneSelect[i].checked = false;
+                            this.toSelect.length=0;
+                        }
+                    },
+                    deleteManyOrder(){
+                        let theSelect = document.getElementsByName("orderlist");
+                        for (let i=0;i<theSelect.length;i++){
+                            if (theSelect[i].checked){
+                                this.toSelect.push(theSelect[i].value);
+                            }
+                        }
+                        if (this.toSelect.length!=0)
+                        {
+                            let qs = Qs;
+                            console.log(decodeURI(theparmObj.state)+"    6");
+                            axios.post('http://localhost:8080/orders/deleteManyOrder',qs.stringify(
+                                {
+                                    delete:this.toSelect,
+                                    state:decodeURI(theparmObj.state)
+                                },{ indices: false}
+                            )).then(data => {
+                                this.lists = data.data;
+                                this.selectNone(theSelect);
+                            }).catch(error => {
+                                console.log(error);
+                            })
+                        }
+                    },
+                    deleteOneOrder(id){
+                        axios.post('http://localhost:8080/orders/deleteOneOrder',{
+                            id:id,
+                            state:decodeURI(theparmObj.state)
+                        }).then(data => {
+                            this.lists = data.data;
+                            let theSelect = document.getElementsByName("orderlist");
+                            this.selectNone(theSelect);
+                        }).catch(error =>{
+                            console.log(error);
+                        })
+                    }
+                },
+                mounted:function () {
+                    this.getLists();
+                }
+            })
+
+        });
+    });
+
+    function getState() {
+        var parms=window.location.search.substring(1).split("&");
+        var parmObj = new Object();
+        for (let i=0;i<parms.length;i++){
+            var parm = parms[i].split("=");
+            console.log(parm);
+            parmObj[parm[0]]=parm[1];
+        }
+        return parmObj;
+    }
+
+    function changeInfo() {
+        var orders = {};
+        var address = document.getElementById('address').value;
+        if(address != ''||address != null){
+            orders.address = address;
+            orders.id = document.getElementById('id').value;
+            orders.state = document.getElementById('state').value;
+            orders.count = document.getElementById('count').value
+            document.getElementById('showInfo').style.display="none";
+            var json = JSON.stringify(orders);
+
+            $.ajax({
+                type:'post',
+                url:'orders/updateOrders',
+                contentType:'application/json;charset=utf-8',
+                data:json,
+                success:function(data){
+                    console.log(data);
+                    if(data === "修改成功"){
+                        window.location.href="admin_orders.html";
+                    }
+                },
+                error:function(err){
+
+                }
+            })
+        }
+    }
+
+
+    function hidder(){
+        document.getElementById('showInfo').style.display="none";
+    }
+
+    //退出
+    function exit() {
+        if(confirm("您确定要退出吗？")) {
+            $.post("../admin/clearAdmin",function(){
+                window.location.href="/admin_login.html";
+            })
+        }
+    }
+</script>
+</body>
+</html>

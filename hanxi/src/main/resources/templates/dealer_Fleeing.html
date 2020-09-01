@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>韩曦经销商管理端</title>
+    <!-- Google font file. If you want you can change. -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900" rel="stylesheet">
+    <!-- Fontawesome font file css -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <!-- Animate css file for css3 animations. for more : https://daneden.github.io/animate.css -->
+    <!-- Only use animate action. If you dont use animation, you don't have to add.-->
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/cryptocoins.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/c3-chart/c3.css">
+    <!-- Template global css file. Requared all pages -->
+    <link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+    <link rel="stylesheet" href="../static/css/common.showInfo.css">
+    <!-- Swiper slider css file -->
+    <link rel="stylesheet" href="../static/css/swiper.min.css">
+    <!--turbo slider plugin css file -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/turbo-slider/turbo.css">
+</head>
+<body>
+<div class="wrapper ">
+    <div class="nav-menu">
+        <nav class="menu">
+            <!-- Menu navigation start -->
+            <div class="nav-container">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+                        <ul>
+                            <li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+                            <li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+                    </li>
+                    <li>
+                        <a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+                    </li>
+                    <li>
+                        <a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Menu navigation end -->
+        </nav>
+    </div>
+    <div class="wrapper-inline">
+        <!-- Header area start -->
+        <header class="no-background"> <!-- extra class no-background -->
+            <a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+            <div class="navi-menu-button">
+                <em></em>
+                <em></em>
+                <em></em>
+            </div>
+        </header>
+        <!-- Header area end -->
+        <!-- Page content start -->
+        <main class="margin mt-0" id="main">
+            <div class="dash-balance">
+                <div class="dash-content relative">
+                    <h3 class="w-text" >欢迎你！<span id="curName"><a href="dealer_login.html">请登录</a></span></h3>
+                </div>
+            </div>
+                <div class="container">
+                    <div class="form-divider"></div>
+                    <div class="form-label-divider"><span>防伪/窜货 查询</span></div>
+                    <div class="form-divider"></div>
+                    <div class="form-row-group with-icons">
+                        <div class="form-row no-padding">
+                            <i class="fa fa-envelope"></i>
+                            <input type="text" name="Code" class="form-element" placeholder="防伪码" id="Code">
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="form-row">
+                        <button  class="button circle block orange" @click="checkCode">查询</button>
+                    </div>
+                </div>
+
+            <div class="showInfo" id="showSecurityCode" style="height: 70px;width: 300px; margin-left: 600px; margin-top: 300px">
+                <div class="content">
+                    <div class="info">
+                        <table>
+                            <tr>
+                                <td><label >防伪查询结果</label></td>
+                                <td><input type="text" id="SecurityCode" readonly="readonly"/></td>
+                            </tr>
+                            <tr>
+                                <td><label >窜货查询结果</label></td>
+                                <td><input type="text" id="flee" readonly="readonly"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><button class="btn btn-primary" onclick="closeSecurityCode()">确定</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer>
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+                </div>
+            </footer>
+        </main>
+        <!-- Page content end -->
+    </div>
+</div>
+
+<!--Page loader DOM Elements. Requared all pages-->
+<div class="sweet-loader">
+    <div class="box">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</div>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/vue/vue.js"></script>
+<script src="../static/vue/axios.min.js"></script>
+
+<script type="text/javascript">
+    function closeSecurityCode(){
+        document.getElementById('showSecurityCode').style.display = "none";
+    }
+
+    $(function () {
+
+        $.post("../dealer/getCurDealer",function(obj){
+            $("#curName").html(obj.dealerName);
+        },"json")
+
+        
+        $.getJSON('dealer/dealer_list', function (result, status) {
+            var v = new Vue({
+                el: '#main',
+                data: {
+                    rows: result
+                },
+                methods:{
+                    checkCode(){
+                        // document.getElementById('showSecurityCode').style.display = "inline";
+                        var Code = $("#Code").val();
+
+                        axios.post('http://localhost:8080/orders/checkSecurityCode',{
+                            Code:Code
+                        }).then(data =>{
+                            console.log(data)
+                            var temp = new Array();
+                            temp = data.data;
+                            var Security = temp[0];
+                            alert(Security);
+                            // document.getElementById('Security').value = Security;
+
+                        }).catch(error => {
+                            console.log(error);
+                        })
+
+                    }
+
+                }
+            })
+        });
+    });
+</script>
+<!-- JQuery library file. requared all pages -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!-- Swiper JS -->
+<script src="../static/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<!-- c3 Charts -->
+<script src="../static/plugins/c3-chart/c3.min.js"></script>
+<script src="../static/plugins/c3-chart/d3.min.js"></script>
+<script src="../static/plugins/c3-chart/c3.custom.js"></script>
+<!-- Flot Charts -->
+<script src="../static/plugins/flot/jquery.flot.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- Sparkline-->
+<script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+<!-- Template global script file. requared all pages -->
+<script src="../static/js/app-charts.js"></script>
+<script src="../static/js/global.script.js"></script>
+</body>
+</html>

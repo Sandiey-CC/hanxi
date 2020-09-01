@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bcjd.hanxi.mapper.DealerMapper">
+    <resultMap id="BaseResultMap" type="Dealer">
+
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="dealer_name" jdbcType="VARCHAR" property="dealerName"/>
+        <result column="dealer_password" jdbcType="VARCHAR" property="dealerPassword"/>
+        <result column="level_name" jdbcType="VARCHAR" property="levelName"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="father_id" jdbcType="VARCHAR" property="fatherId"/>
+        <result column="regist_time" jdbcType="TIMESTAMP" property="registTime"/>
+        <result column="grant_code" jdbcType="VARCHAR" property="grantCode"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+    </resultMap>
+
+    <select id="selectDealerCount" resultMap="BaseResultMap">
+      select count(*) from  dealer
+    </select>
+
+    <select id="selectDealer" resultMap="BaseResultMap">
+         select * from dealer
+    </select>
+    <select id="selectDealerOnePage" resultMap="BaseResultMap">
+         select * from dealer
+    </select>
+
+    <select id="findFatherIdExists" resultMap="BaseResultMap">
+        select id from dealer where father_id = #{fatherId}
+    </select>
+
+    <select id="findrantCodeExists" resultMap="BaseResultMap">
+        select grant_code from dealer where grant_code = #{grantCode}
+    </select>
+
+    <select id="selectDealerAllByTypeAndKey" resultMap="BaseResultMap">
+        select * from dealer where ${type} like CONCAT('%',#{key},'%')
+    </select>
+
+    <select id="selectByFatherId" resultType="int">
+        select id from dealer where father_id = #{fatherId}
+    </select>
+
+    <delete id="deleteOneDealer">
+        delete from dealer where id = #{id}
+    </delete>
+
+    <update id="updateDealer" parameterType="Dealer">
+        update dealer
+        set dealer_name=#{dealer.dealerName},dealer_password=#{dealer.dealerPassword},money=#{dealer.money}
+        where id=#{dealer.id}
+    </update>
+
+    <select id="selectFatherId" resultType="Integer">
+         select id from dealer where grant_code = #{code}
+    </select>
+
+    <select id="selectMyInfo" resultMap="BaseResultMap">
+        select * from dealer where id=#{id}
+    </select>
+
+    <update id="updateMyInfo" parameterType="Dealer">
+        update dealer set dealer_name=#{dealer.dealerName},dealer_password=#{dealer.dealerPassword},
+        phone=#{dealer.phone},address=#{dealer.address},sex=#{dealer.sex} where id=#{dealer.id}
+    </update>
+
+    <select id="selectLowerDealer" resultMap="BaseResultMap">
+        SELECT * from dealer,
+        (SELECT send_dealer_id,SUM(count) AS selling FROM orders WHERE send_dealer_id IN
+        (SELECT ID FROM dealer WHERE father_id=#{id}) GROUP BY send_dealer_id ORDER BY selling DESC)as paihangbang
+        where dealer.id=paihangbang.send_dealer_id
+    </select>
+
+</mapper>

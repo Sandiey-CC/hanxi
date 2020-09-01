@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>韩曦经销商管理端</title>
+
+    <!-- Google font file. If you want you can change. -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900" rel="stylesheet">
+
+    <!-- Fontawesome font file css -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/c3-chart/c3.css">
+
+    <!-- Template global css file. Requared all pages -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="nav-menu">
+        <nav class="menu">
+
+            <!-- Menu navigation start -->
+            <div class="nav-container">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+                        <ul>
+                            <li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+                            <li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+                    </li>
+                    <li>
+                        <a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+                    </li>
+                    <li>
+                        <a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Menu navigation end -->
+        </nav>
+    </div>
+
+
+    <div class="wrapper-inline">
+
+        <!-- Header area start -->
+        <header class="no-background"> <!-- extra class no-background -->
+
+            <a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+            <div class="search-button" data-search="open">
+                <img src="../static/img/content/notification1.png" class="not-icon1" alt="">
+                <img src="../static/img/content/notification2.png" class="not-icon2" alt="">
+            </div>
+
+            <div class="navi-menu-button">
+                <em></em>
+                <em></em>
+                <em></em>
+            </div>
+
+        </header>
+        <!-- Header area end -->
+
+        <!--NOTIFICATION BOX CONTENT START-->
+        <!--NOTIFICATION BOX CONTENT END-->
+
+        <!-- Page content start -->
+        <main class="margin mt-0">
+            <div class="dash-balance">
+                <div class="dash-content relative">
+                    <h3 class="w-text">Trader Porfile</h3>
+                    <div class="notification">
+                        <a href=""><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <section class="container bal-section">
+
+                <div class="form-row txt-center">
+                    <div class="profile-image">
+                        <img class="avatar-img" alt="User Avatar" src="../static/img/avatar.png" width="100" height="100">
+                    </div>
+                </div>
+
+                <div class="trader-info">
+                    <h3 id="myName"></h3>
+                    <p id="myHome"></p>
+                    <ul class="trader-info-list list-unstyled">
+                        <li>
+                            <div class="profile1"></div>
+                            <h2 id="mySellOrders"></h2>
+                            <small class="txt-muted">我的已完成订单数量</small>
+                        </li>
+                        <li>
+                            <div class="profile2"></div>
+                            <h2 id="sumProfit"></h2>
+                            <small class="txt-muted">总收入</small>
+                        </li>
+                        <li>
+                            <div class="profile3"></div>
+                            <h2 id="actualProfit"></h2>
+                            <small class="txt-muted">净利润</small>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="container">
+                <h4 class="title-main">我的信息</h4>
+                <div class="form-row-group with-icons" id="Info">
+                    <input type="hidden" id="id" v-model="obj.id">
+                    <div class="form-row no-padding">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="dealerName" class="form-element" placeholder="用户名" v-model="obj.dealerName">
+                    </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="dealerPassword" class="form-element" placeholder="密码" v-model="obj.dealerPassword">
+                    </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-star"></i>
+                        <input type="text" id="level" class="form-element" placeholder="等级" v-model="obj.level" readonly>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-star"></i>
+                        <input type="text" id="levelName" class="form-element" placeholder="等级名称" v-model="obj.levelName" readonly>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-phone"></i>
+                        <input type="text" id="phone" class="form-element" placeholder="电话" v-model="obj.phone">
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="fatherId" class="form-element" placeholder="上级" v-model="obj.fatherId" readonly>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-clock-o"></i>
+                        <input type="text" id="registTime" class="form-element" placeholder="注册时间" v-model="obj.registTime" readonly>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-tag"></i>
+                        <input type="text" id="grantCode" class="form-element" placeholder="授权码" v-model="obj.grantCode" readonly>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-home"></i>
+                        <input type="text" id="address" class="form-element" placeholder="住址" v-model="obj.address">
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-google"></i>
+                        <select class="form-element sex"  v-if="obj.sex==='男'">
+                            <option value="男" selected>男</option>
+                            <option value="女">女</option>
+                        </select>
+                        <select class="form-element sex"  v-else>
+                            <option value="男">男</option>
+                            <option  selected value="女">女</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row no-padding">
+                        <i class="fa fa-heart"></i>
+                        <input type="text" id="money" class="form-element" placeholder="净赚" v-model="obj.money" readonly>
+                    </div>
+
+                    <div class="form-row">
+                        <a href="#" class="button circle block orange" onclick="changeInfo()">确定修改</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+                </div>
+            </footer>
+        </main>
+        <!-- Page content end -->
+    </div>
+</div>
+
+
+<!--Page loader DOM Elements. Requared all pages-->
+<div class="sweet-loader">
+    <div class="box">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</div>
+
+<!-- JQuery library file. requared all pages -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!-- c3 Charts -->
+<script src="../static/plugins/c3-chart/c3.min.js"></script>
+<script src="../static/plugins/c3-chart/d3.min.js"></script>
+<script src="../static/plugins/c3-chart/c3.custom.js"></script>
+<!-- Sparkline-->
+<script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+<!-- Template global script file. requared all pages -->
+<script src="../static/js/app-charts.js"></script>
+<script src="../static/js/global.script.js"></script>
+<script src="../static/vue/vue.js"></script>
+
+</body>
+<script type="text/javascript">
+
+    //全局时间过滤器
+    Vue.filter("formatTime",function (time) {
+        let date = new Date(time).toLocaleString();
+        return date;
+    });
+    $(function(){
+        $.post("../dealer/getCurDealer",function(obj){
+            console.log(obj.id);
+            var dealer={};
+            dealer.id=obj.id
+            var json = JSON.stringify(dealer);
+            console.log(json);
+            $.ajax({
+                type:'post',
+                url:'/dealer/selectMyInfo',
+                contentType:'application/json;charset=utf-8',
+                data:json,
+                success:function(obj){
+                    $("#myName").html(obj.dealerName);
+                    $("#myHome").html(obj.address);
+                    console.log(obj);
+                    var v = new Vue({
+                        el:"#Info",
+                        data:{
+                            obj:obj
+                        }
+                    })
+                }
+            });
+            $.ajax({
+                type:'post',
+                url:'orders/getProfit',
+                contentType:'application/json;charset=utf-8',
+                data:json,
+                success:function(data){
+                    console.log(data);
+                    console.log(data[0]);
+                    $("#actualProfit").html("$"+data[0]);
+                    $("#sumProfit").html("$"+data[1]);
+                    $("#mySellOrders").html(data[2]);
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            })
+
+        },"json")
+
+    })
+    function changeInfo() {
+        var dealer = {};
+        dealer.id = $("#id").val();
+        dealer.dealerName = $("#dealerName").val();
+        dealer.dealerPassword = $("#dealerPassword").val();
+        dealer.phone = $("#phone").val();
+        dealer.address = $("#address").val();
+        dealer.sex = $(".sex option:selected").val();
+        console.log(dealer);
+        var json = JSON.stringify(dealer);
+        $.ajax({
+            type:'post',
+            url:'dealer/updateMyInfo',
+            contentType:'application/json;charset=utf-8',
+            data:json,
+            success:function (data) {
+                if(data === "修改成功")
+                    window.location.href = "dealer_info.html";
+            },
+            error:function (error) {
+                console.log(error);
+            }
+        })
+
+
+    }
+</script>
+
+</html>

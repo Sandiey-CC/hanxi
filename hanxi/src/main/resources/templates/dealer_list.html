@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-for="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>韩曦经销商管理端</title>
+    <!-- Google font file. If you want you can change. -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900" rel="stylesheet">
+    <!-- Fontawesome font file css -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <!-- Animate css file for css3 animations. for more : https://daneden.github.io/animate.css -->
+    <!-- Only use animate action. If you dont use animation, you don't have to add.-->
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/cryptocoins.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/c3-chart/c3.css">
+    <!-- Template global css file. Requared all pages -->
+    <link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+    <!-- Swiper slider css file -->
+    <link rel="stylesheet" href="../static/css/swiper.min.css">
+    <!--turbo slider plugin css file -->
+    <script src="../static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/plugins/turbo-slider/turbo.css">
+</head>
+<body>
+<div class="wrapper ">
+    <div class="nav-menu">
+        <nav class="menu">
+            <!-- Menu navigation start -->
+            <div class="nav-container">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+                        <ul>
+                            <li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+                            <li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+                    </li>
+                    <li>
+                        <a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+                    </li>
+                    <li>
+                        <a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Menu navigation end -->
+        </nav>
+    </div>
+    <div class="wrapper-inline">
+        <!-- Header area start -->
+        <header class="no-background"> <!-- extra class no-background -->
+            <a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+            <div class="navi-menu-button">
+                <em></em>
+                <em></em>
+                <em></em>
+            </div>
+        </header>
+        <!-- Header area end -->
+        <!-- Page content start -->
+
+
+            <div class="dash-balance">
+                <div class="dash-content relative">
+                    <h3 class="w-text">经销商管理</h3>
+                </div>
+            </div>
+            <div id="my">
+            <section class="container">
+                <a class="pull-right color pick-btn" id="addDealer" href="dealer_add.html">添加</a>
+                <h4 class="title-main mt-5 text-muted mb-10 font-weight-medium">经销商列表</h4>
+                <ul class="transaction-list list-unstyled">
+                    <li v-for="li in lists">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="member-img"><img src="../static/img/content/avatar/user-4.png" alt=""> alt=""</span>
+                                <div  class="ml-10">
+                                    <h4 class="coin-name">
+                                        {{li.dealerName}}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+                <!--分页-->
+                <nav aria-label="Page navigation" class="text-center">
+                    <ul class="pagination">
+                        <li v-on:click="prePage()">
+                            <a aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-for="index in page.pages"
+                            v-on:click="curPage(index)"
+                            :class="page.pageNo==index? 'active':''">
+                            <a>{{index}}</a>
+                        </li>
+                        <li v-on:click="nextPage()">
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <footer>
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+                </div>
+            </footer>
+
+        <!-- Page content end -->
+    </div>
+</div>
+<!--Page loader DOM Elements. Requared all pages-->
+<div class="sweet-loader">
+    <div class="box">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</div>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script type="text/javascript">
+    window.onload=function () {
+        new Vue({
+            el:"#my",
+            data:{  //数据
+                lists:[],  //列表数据
+                page:{
+                    pages:1,   //总页数
+                    total:1,        //总条数
+                    pageNo:1,      //页码
+                    pageSize:5,    //每页的条数
+                }
+            },
+            methods:{
+                getLists:function (i) {
+                    this.page.pageNo=i || this.page.pageNo;
+                    axios({
+                        method:"get",
+                        url:"http://localhost:8080/dealer/testPageHelper1?pageNum="+this.page.pageNo+"&pageSize=5"
+                    }).then(res=>{
+                        console.log(res);
+                        this.lists=res.data.list;    //列表数据
+                        this.page.pages=res.data.pages;  //总页数
+                        this.page.total=res.data.total;    //总条数
+                    }).catch(function (error) {
+                        console.log("请求失败")
+                    })
+                },
+                curPage:function(index) {   //当前页
+                    this.getLists(index);
+                },
+                prePage:function() {   //上一页
+                    if (this.page.pageNo>1){
+                        this.page.pageNo--;
+                        this.getLists(this.page.pageNo);
+                    }
+                },
+                nextPage:function() {   //下一页
+                    if (this.page.pageNo<this.page.pages){
+                        this.page.pageNo++;
+                        this.getLists(this.page.pageNo);
+                    }
+                },
+            },
+            mounted:function () {
+                this.getLists();
+            }
+        })
+    }
+</script>
+
+<script>
+    $(function () {
+        $("#addDealer").click(function () {
+            window.location.href="dealer_add.html";
+        });
+    });
+</script>
+<!-- JQuery library file. requared all pages -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!-- Swiper JS -->
+<script src="../static/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<!-- c3 Charts -->
+<script src="../static/plugins/c3-chart/c3.min.js"></script>
+<script src="../static/plugins/c3-chart/d3.min.js"></script>
+<script src="../static/plugins/c3-chart/c3.custom.js"></script>
+<!-- Flot Charts -->
+<script src="../static/plugins/flot/jquery.flot.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../static/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- Sparkline-->
+<script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+<!-- Template global script file. requared all pages -->
+<script src="../static/js/app-charts.js"></script>
+<script src="../static/js/global.script.js"></script>
+</body>
+</html>

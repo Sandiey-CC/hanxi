@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<title>Crypto Mobile Template</title>
+
+	<!-- Google font file. If you want you can change. -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900" rel="stylesheet">
+
+	<!-- Fontawesome font file css -->
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+
+	<!-- Animate css file for css3 animations. for more : https://daneden.github.io/animate.css -->
+	<!-- Only use animate action. If you dont use animation, you don't have to add.-->
+	<link rel="stylesheet" type="text/css" href="../static/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/cryptocoins.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/c3-chart/c3.css">
+	<link rel="stylesheet" href="../static/css/layui.css">
+	<!-- Template global css file. Requared all pages -->
+	<link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+
+	<!-- Swiper slider css file -->
+	<link rel="stylesheet" href="../static/css/swiper.min.css">
+
+	<!--turbo slider plugin css file -->
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/turbo-slider/turbo.css">
+
+</head>
+
+<body>
+
+	<div class="wrapper ">
+		<div class="nav-menu">
+			<nav class="menu">
+				<!-- Menu navigation start -->
+				<div class="nav-container">
+					<ul class="main-menu">
+						<li class="active">
+							<a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+						</li>
+						<li class="">
+							<a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+						</li>
+						<li class="">
+							<a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+							<ul>
+								<li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+								<li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+							</ul>
+						</li>
+
+						<li class="">
+							<a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+						</li>
+						<li>
+							<a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+						</li>
+						<li>
+							<a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+						</li>
+						<li class="">
+							<a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+						</li>
+						<li class="">
+							<a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+						</li>
+					</ul>
+				</div>
+			<!-- Menu navigation end -->
+			</nav>
+		</div>
+		<div class="wrapper-inline">
+
+			<!-- Header area start -->
+			<header class="no-background"> <!-- extra class no-background -->
+				<a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+				<div class="navi-menu-button">
+					<em></em>
+					<em></em>
+					<em></em>
+				</div>
+			</header>
+			<!-- Header area end -->
+
+			<!-- Page content start -->
+			<main class="margin mt-0">
+
+				<div class="dash-balance">
+					<div class="dash-content relative">
+						<h3 class="w-text" >发货订单</h3>
+					</div>
+				</div>
+
+				<section class="container">
+
+					<div class="tab-item">
+						<div class="tab-menu fix-width">
+							<a class="menu-item active" href="javascript:void(0);" data-content="contentall" style="width: 50%;"><i class="fa fa-bars mr-10"></i> 未发货</a>
+							<a class="menu-item" href="javascript:void(0);" data-content="contentPost" style="width: 50%;"><i class="fa fa-bars mr-10"></i> 已发货</a>
+
+						</div>
+						<div class="tab-content">
+							<div class="content-item active" id="contentall">
+
+								<ul class="transaction-list list-unstyled" id="notsend">
+									<li v-for="r in rows" class="button circle" data-popup="sendPopup">
+										<div class="d-flex align-items-center justify-content-between">
+											<div class="d-flex align-items-center">
+													订单编号：
+												<span class="sendId"> {{r.id}}</span>
+
+											</div>
+											<div class="d-block mb-0">
+												接收方：
+												<span class="sendName">{{r.dealer_name}}</span>
+											</div>
+
+										</div>
+									</li>
+
+								</ul>
+
+							</div>
+							<div class="content-item" id="contentPost">
+
+								<ul class="transaction-list list-unstyled" id="sended">
+									<li v-for="r in rows" class="button circle" data-popup="sendPopup">
+										<div class="d-flex align-items-center justify-content-between">
+											<div class="d-flex align-items-center">
+												订单编号：
+												<span class="sendId"> {{r.id}}</span>
+
+											</div>
+											<div class="d-block mb-0">
+												接收方：
+												<span class="sendName">{{r.dealer_name}}</span>
+											</div>
+
+										</div>
+									</li>
+
+								</ul>
+
+							</div>
+
+						</div>
+					</div>
+				</section>
+
+				<footer>
+					<div class="container">
+						<ul>
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-google"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						</ul>
+						<p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+					</div>
+				</footer>
+			</main>
+			<!-- Page content end -->
+		</div>
+	</div>
+
+	<div class="popup-overlay" id="sendPopup"> <!-- if you dont want overlay add class .no-overlay -->
+		<div class="popup-container">
+			<div class="popup-header">
+				<h3 class="popup-title">订单详情</h3>
+				<span class="popup-close" data-dismiss="true"><i class="fa fa-times"></i></span>
+			</div>
+			<div class="popup-content">
+
+				<div class="form-row-group with-icons">
+					<div class="form-row no-padding">
+						<i class="fa fa-code"></i>
+						<input type="text" name="aaa" class="form-element" id="alterSendId" placeholder="Input element" disabled="disabled">
+					</div>
+				</div>
+				<ul class="transaction-list list-unstyled" id="ordersDetail">
+					<li v-for="r in rows">
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="d-flex align-items-center">
+								商品名称：
+								<span class="sendGoods"> {{r.ordersDetail[0].dealerStock.product.productName}}</span>
+
+							</div>
+							<div class="d-block mb-0">
+								单价：
+								<span class="sendPrice">{{r.ordersDetail[0].dealerStock.price}}</span>
+							</div>
+							<div class="d-block mb-0">
+								数量：
+								<span class="sendNum">{{r.ordersDetail[0].number}}</span>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+				<div style="float: right">总数量：<span id="altercount"></span></div>
+				<div >总价：<span id="altersum"></span></div>
+
+				<div class="form-mini-divider"></div>
+
+				<div class="form-row-group with-icons">
+					<div class="form-row-group with-icons">
+						<div class="form-row no-padding">
+							接收方：
+							<input type="text"  class="form-element" id="alterSendget" disabled="disabled">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-mini-divider"></div>
+
+				<div class="form-row-group with-icons">
+					<div class="form-row-group with-icons">
+						<div class="form-row no-padding">
+							接收地址：
+							<input type="text"  class="form-element" id="alterSendaddress" disabled="disabled">
+						</div>
+					</div>
+				</div>
+				<div class="form-row-group with-icons">
+					<div class="form-row-group with-icons">
+						<div class="form-row no-padding">
+							备注：
+							<input type="text"  class="form-element" id="alterSendremarks" disabled="disabled">
+						</div>
+					</div>
+				</div>
+				<div class="form-row-group with-icons">
+					<div class="form-row-group with-icons">
+						<div class="form-row no-padding">
+							创建时间：
+							<input type="text"  class="form-element" id="alterSendcreate" disabled="disabled">
+						</div>
+					</div>
+				</div>
+				<div class="form-row-group with-icons">
+					<div class="form-row-group with-icons">
+						<div class="form-row no-padding">
+							发货时间：
+							<input type="text"  class="form-element" id="alterSendfinish" disabled="disabled">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="popup-footer">
+				<button class="button orange" id="commitSend" onclick="commitSend();">确认发货</button>
+			</div>
+		</div>
+	</div>
+
+	<!--Page loader DOM Elements. Requared all pages-->
+	<div class="sweet-loader">
+		<div class="box">
+		  	<div class="circle1"></div>
+		  	<div class="circle2"></div>
+		  	<div class="circle3"></div>
+		</div>
+	</div>
+
+	<!-- JQuery library file. requared all pages -->
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+	<!-- Swiper JS -->
+    <script src="../static/js/swiper.min.js"></script>
+
+	<!-- Template global script file. requared all pages -->
+	<script src="../static/js/global.script.js"></script>
+	<script src="../static/vue/vue.js"></script>
+	<script src="../static/vue/axios.min.js"></script>
+
+	<script>
+
+
+
+		$(function(){
+			$.post("../dealer/getCurDealer",function(obj){
+				if(obj==null)
+					alert("已失效，请重新登录！");
+				else {
+					let id=obj.id;
+					sessionStorage.setItem("level",obj.level);
+					getSendOrders(id);
+					getSendedorders(id);
+				}
+
+			},"json");
+
+			$('body').on('click','li.button.circle',function(){
+				let curId=$(this).find(".sendId").text();
+				sessionStorage.setItem("curId",curId);
+				let curName=$(this).find(".sendName").text();
+				$("#alterSendId").val(curId);
+				$.get("../orders/getSendOrdersDetail?id="+curId+"&level="+sessionStorage.getItem("level"),function (data,status) {
+
+					var v1 = new Vue({
+						el: '#ordersDetail',
+						data: {
+							flag:true,
+							rows: data
+						},
+
+					});
+
+					$("#altercount").html(data[0].count);
+					$("#altersum").html(data[0].price);
+					$("#alterSendget").val(curName);
+					$("#alterSendaddress").val(data[0].address);
+					$("#alterSendremarks").val(data[0].remarks);
+					$("#alterSendcreate").val(new Date(data[0].createTime).toString().substring(0,24));
+					let date=data[0].completeTime;
+					if(date!=null)
+						date = new Date(date).toString().substring(0,24);
+					$("#alterSendfinish").val(date);
+					let state=data[0].state;
+					if(state=="已发货")
+						$(".popup-footer").html();
+					if(state=="未发货")
+						$(".popup-footer").html("<button class=\"button orange\" id=\"commitSend\" onclick=\"commitSend();\">确认发货</button>\n");
+
+				});
+
+			});
+
+
+		});
+
+		function getSendOrders(id) {
+			$.get("../orders/getSendOrders?id="+id+"&state=未发货",function (data,status) {
+				var v = new Vue({
+					el: '#notsend',
+					data: {
+						rows: data
+					}
+				});
+
+			});
+		}
+
+
+		function getSendedorders(id) {
+			$.get("../orders/getSendOrders?id="+id+"&state=已发货",function (data,status) {
+				var v = new Vue({
+					el: '#sended',
+					data: {
+						rows: data
+					}
+				});
+
+			});
+		}
+
+		function commitSend() {
+			let curId = sessionStorage.getItem("curId");
+			$.post("../dealer/getCurDealer",function(obj){
+				if(obj==null)
+					alert("已失效，请重新登录！");
+				else {
+					let dealerId=obj.id;
+					$.post("../orders/commitSendOrders",{ordersId:curId,dealerId:dealerId},function(data){
+						alert(data);
+					});
+				}
+
+			},"json");
+
+		};
+
+	</script>
+
+</body>
+
+</html>

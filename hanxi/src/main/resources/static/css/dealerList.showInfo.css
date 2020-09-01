@@ -1,0 +1,12 @@
+.content{
+    position: relative;
+    background: #f0f0f0;
+    width: 30%;
+    height: 75%;
+    border-radius: 5px;
+    margin: 5% auto;
+    opacity: 1;
+}
+.info{
+    line-height:40px;
+}

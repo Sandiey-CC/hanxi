@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<title>用户设置</title>
+
+	<!-- Google font file. If you want you can change. -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900" rel="stylesheet">
+
+	<!-- Fontawesome font file css -->
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+
+	<!-- Template global css file. Requared all pages -->
+	<link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+</head>
+
+<body>
+	
+	<div class="wrapper">
+		<div class="nav-menu">
+			<nav class="menu">
+				
+				<!-- Menu navigation start -->
+				<div class="nav-container">
+					<ul class="main-menu">
+						<li class="active">
+							<a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+						</li>
+						<li class="">
+							<a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+						</li>
+						<li class="">
+							<a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+							<ul>
+								<li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+								<li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+							</ul>
+						</li>
+
+						<li class="">
+							<a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+						</li>
+						<li>
+							<a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+						</li>
+						<li>
+							<a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+						</li>
+						<li class="">
+							<a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+						</li>
+						<li class="">
+							<a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+						</li>
+					</ul>
+				</div>
+			<!-- Menu navigation end -->
+			</nav>
+		</div>
+		<div class="wrapper-inline">
+			<!-- Header area start -->
+			<header> <!-- extra class no-background -->
+				<a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+				<h1 class="page-title">授权码生成</h1>
+				<div class="navi-menu-button">
+					<em></em>
+					<em></em>
+					<em></em>
+				</div>
+			</header>
+			<!-- Header area end -->
+			<!-- Page content start -->
+			<main>
+			
+				<div class="container">
+
+					<div class="form-divider"></div>
+					<div class="form-label-divider"><span>授权码</span></div>
+					<div class="form-divider"></div>
+
+
+					<div class="form-row-group">
+						<div class="form-row no-padding">
+							<textarea class="form-element"  rows="6" id="code"></textarea>
+						</div>
+					</div>
+
+					<div class="form-mini-divider"></div>
+
+
+
+					<div class="form-divider"></div>
+
+					<div class="form-row">
+						<button class="button circle block orange" id="getCode" data-popup="basicPopup">点击生成</button>
+					</div>
+
+
+
+				</div>
+
+			</main>
+			<!-- Page content end -->
+		</div>
+	</div>
+	<div class="popup-overlay" id="basicPopup"> <!-- if you dont want overlay add class .no-overlay -->
+		<div class="popup-container">
+			<div class="popup-content">
+				<span id="msg"></span>
+			</div>
+		</div>
+	</div>
+
+	<!--Page loader DOM Elements. Requared all pages-->
+	<div class="sweet-loader">
+		<div class="box">
+		  	<div class="circle1"></div>
+		  	<div class="circle2"></div>
+		  	<div class="circle3"></div>
+		</div>
+	</div>
+
+	<!-- JQuery library file. requared all pages -->
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+	<!-- Template global script file. requared all pages -->
+	<script src="../static/js/global.script.js"></script>
+
+	<script>
+
+		$(function () {
+			$("#getCode").mousedown(function () {
+				$.post("../dealer/getCurDealer",function(obj){
+					sessionStorage.setItem("curCode",obj.grantCode);
+				},"json");
+			});
+
+			$("#getCode").mouseup(function () {
+				let curCode=sessionStorage.getItem("curCode");
+				if(curCode==null){
+					alert("已失效，请重新登录！");
+					window.location.href="/dealer_login.html";
+				}
+				else {
+					$.post("../dealer/generateCode", {fatherCode: curCode}, function (data, status) {
+						$("#code").val(data.code);
+						$("#msg").html(data.msg);
+						sessionStorage.removeItem("curCode");
+					});
+				}
+			});
+		});
+
+	</script>
+</body>
+
+</html>

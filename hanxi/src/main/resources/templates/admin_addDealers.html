@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>韩曦后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- basic styles -->
+    <link href="../static/../static/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css"/>
+    <![endif]-->
+    <!-- page specific plugin styles -->
+    <!-- fonts -->
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../static/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="../static/assets/css/ace-skins.min.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css"/>
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+<!--    <link href="http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="./bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" media="screen">-->
+<!--    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+<!--    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--    <script type="text/javascript" src="./bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"-->
+<!--            charset="UTF-8"></script>-->
+<!--    &lt;!&ndash;中文引用&ndash;&gt;-->
+<!--    <script type="text/javascript" src="./bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"-->
+<!--            charset="UTF-8"></script>-->
+<!--    <script src="../static/assets/js/ace-extra.min.js"></script>-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../static/assets/js/html5shiv.js"></script>
+    <script src="../static/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="icon-leaf"></i>
+                    韩曦后台管理
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="../static/img/content/avatar/user-1.png" alt="Jason's Photo"/>
+                        <span class="user-info">
+									<small>Welcome,</small>
+								<span id="curName">请登录</span>
+                        </span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="icon-cog"></i>
+                                设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:exit();">
+                                <i class="icon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+<!--    <script type="text/javascript">-->
+<!--        $('.form_datetime').datetimepicker({-->
+<!--            //language:  'fr',-->
+<!--            language: 'zh-CN',-->
+<!--            //format : 'yyyy-mm-dd hh:ii:ss',//日期格式。可以将日期格式，定成年月日时分秒。-->
+<!--            format: 'yyyy-mm-dd',//日期格式。可以将日期格式，定成年月日时，分秒为0。-->
+<!--            weekStart: 1,-->
+<!--            todayBtn: 1,-->
+<!--            autoclose: 1,-->
+<!--            todayHighlight: 1,-->
+<!--            startView: 2,-->
+<!--            forceParse: 0,-->
+<!--            showMeridian: 1-->
+<!--        });-->
+<!--    </script>-->
+
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <div class="sidebar" id="sidebar">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'fixed')
+                } catch (e) {
+                }
+            </script>
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="icon-signal"></i>
+                    </button>
+                    <button class="btn btn-info">
+                        <i class="icon-pencil"></i>
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="icon-group"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="icon-cogs"></i>
+                    </button>
+                </div>
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+                    <span class="btn btn-info"></span>
+                    <span class="btn btn-warning"></span>
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- #sidebar-shortcuts -->
+            <ul class="nav nav-list">
+                <li>
+                    <a href="admin_index.html">
+                        <i class="icon-dashboard"></i>
+                        <span class="menu-text"> 主页 </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text"> 管理员 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_list.html">
+                                <i class="icon-double-angle-right"></i>
+                                管理员列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_addAdmins.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加管理员
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li  class="active open">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 经销商 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin-dealer_list.html">
+                                <i class="icon-double-angle-right"></i>
+                                经销商列表
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="admin_addDealers.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加经销商
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li >
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list-alt"></i>
+                        <span class="menu-text"> 商品 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                商品列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加商品
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-edit"></i>
+                        <span class="menu-text"> 订单 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_orders.html">
+                                <i class="icon-double-angle-right"></i>
+                                全部订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=未发货">
+                                <i class="icon-double-angle-right"></i>
+                                未发货订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=已发货">
+                                <i class="icon-double-angle-right"></i>
+                                已发货订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=已完成">
+                                <i class="icon-double-angle-right"></i>
+                                已完成订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=异常">
+                                <i class="icon-double-angle-right"></i>
+                                异常订单
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 更多 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="faq.html">
+                                <i class="icon-double-angle-right"></i>
+                                帮助
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.nav-list -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                   data-icon2="icon-double-angle-right"></i>
+            </div>
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'collapsed')
+                } catch (e) {
+                }
+            </script>
+        </div>
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('breadcrumbs', 'fixed')
+                    } catch (e) {
+                    }
+                </script>
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home home-icon"></i>
+                        <a href="#">主页</a>
+                    </li>
+                    <li>
+                        <a href="#">经销商</a>
+                    </li>
+                    <li>添加经销商</li>
+                </ul><!-- .breadcrumb -->
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input"
+                                           id="nav-search-input" autocomplete="off"/>
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div><!-- #nav-search -->
+            </div>
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="table-responsive">
+                         <form class="form-horizontal" role="form" id="toAddDealers">
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersUsername"> 姓名： </label>
+
+
+                                    <div class="col-sm-9">
+
+                                        <input type="text" id="dealersUsername" class="col-xs-10 col-sm-5" required="required" name="dealerName">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersPassword"> 密码： </label>
+
+
+
+                                    <div class="col-sm-9">
+
+                                        <input type="password" id="dealersPassword" class="col-xs-10 col-sm-5" required="required" name="dealerPassword">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersStatus"> 身份： </label>
+
+
+                                    <div class="col-sm-9">
+
+                                            <select class="form-control" style="width: 348px" id="dealersStatus" name="levelName">
+
+                                                <option value="一级经销商" selected="selected">一级经销商</option>
+
+                                                <option value="二级经销商">二级经销商</option>
+
+                                                <option value="三级经销商">三级经销商</option>
+
+                                            </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersLevel"> 代理级别： </label>
+
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control"  style="width: 348px" id="dealersLevel" name="level">
+
+                                            <option value="1" selected="selected">1</option>
+
+                                            <option value="2">2</option>
+
+                                            <option value="3">3</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersPhone"> 手机号： </label>
+
+
+
+                                    <div class="col-sm-9">
+
+                                        <input type="text" id="dealersPhone"  class="col-xs-10 col-sm-5" required="required" name="phone">
+
+                                    </div>
+
+                                </div>
+
+<!--                                <div class="space-4"></div>-->
+
+<!--                                <div class="form-group">-->
+<!--                                    <label class="col-sm-3 control-label no-padding-right" for="dealersPassword"> 上级经销商id： </label>-->
+<!--                                    <div class="col-sm-9">-->
+<!--                                        <input type="text" id="dealerFatherId" class="col-xs-10 col-sm-5" required="required" name="dealerPassword">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="space-4"></div>-->
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersSuperior"> 上级授权码： </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="dealersSuperior" class="col-xs-10 col-sm-5" required="required" name="grantCode">
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+
+
+
+
+<!--                                <div class="form-group">-->
+
+<!--                                    <label class="col-sm-3 control-label no-padding-right" > 授权时间： </label>-->
+
+
+
+<!--                                    <div class="col-sm-9" >-->
+<!--                                        <div class="control-group">-->
+<!--                                            <div class="controls input-append date form_datetime" data-date="2020-07-16" data-date-format="dd MM yyyy"-->
+<!--                                                 data-link-field="dtp_input1">-->
+<!--                                                <input size="16" type="text" value="" readonly>-->
+<!--                                                <span class="add-on"><i class="icon-remove"></i></span>-->
+<!--                                                <span class="add-on"><i class="icon-th"></i></span>-->
+<!--                                            </div>-->
+<!--                                            <input type="hidden" id="dtp_input1" value="" /><br />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+
+<!--                                <div class="form-group">-->
+
+<!--                                    <label class="col-sm-3 control-label no-padding-right" for="dealersAuthorizedTime"> 授权时间： </label>-->
+
+
+
+<!--                                    <div class="col-sm-9">-->
+
+<!--                                        <input type="text" id="dealersAuthorizedTime"  class="col-xs-10 col-sm-5" required="required" name="registTime">-->
+
+<!--                                    </div>-->
+
+<!--                                </div>-->
+
+<!--                                <div class="space-4"></div>-->
+
+
+<!--                                <div class="form-group">-->
+
+<!--                                    <label class="col-sm-3 control-label no-padding-right" for="dealersAuthorizationCode">授权码：</label>-->
+
+
+
+<!--                                    <div class="col-sm-9">-->
+<!--                                        <input type="text" id="dealersAuthorizationCode" placeholder="" class="col-xs-10 col-sm-5" name="grantCode">-->
+
+<!--                                    </div>-->
+
+<!--                                </div>-->
+
+
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" for="dealersAddress"> 收货地址： </label>
+
+
+
+                                    <div class="col-sm-9">
+
+                                        <input type="text" id="dealersAddress" class="col-xs-10 col-sm-5" required="required" name="address">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label no-padding-right" > 性别： </label>
+
+
+
+                                    <div class="col-sm-9">
+
+                                        <div class="radio" style="float: left">
+
+                                            <label>
+
+                                                <input name="sex" type="radio" class="ace" value="男" checked="checked">
+
+                                                <span class="lbl"> 男</span>
+
+                                            </label>
+
+                                        </div>
+
+                                        <div class="radio" style="float: left">
+
+                                            <label>
+
+                                                <input name="sex" type="radio" class="ace" value="女">
+
+                                                <span class="lbl"> 女</span>
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="space-4"></div>
+
+
+
+                                <div class="clearfix form-actions">
+
+                                    <div class="col-md-offset-3 col-md-9">
+
+                                        <button id="addDealer" class="btn btn-info">
+
+                                            <i class="icon-ok bigger-110"></i>
+
+                                            Submit
+
+                                        </button>
+
+
+
+                                        &nbsp; &nbsp; &nbsp;
+
+                                        <button class="btn" type="reset">
+
+                                            <i class="icon-undo bigger-110"></i>
+
+                                            Reset
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                         </form>>
+                        </div><!-- /.table-responsive -->
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+    </div><!-- /.main-container-inner -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div>
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="../static/assets/js/typeahead-bs2.min.js"></script>
+<!-- page specific plugin scripts -->
+<script src="../static/assets/js/jquery.dataTables.min.js"></script>
+<script src="../static/assets/js/jquery.dataTables.bootstrap.js"></script>
+<!-- ace scripts -->
+<script src="../static/assets/js/ace-elements.min.js"></script>
+<script src="../static/assets/js/ace.min.js"></script>
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+
+    jQuery(function ($) {
+
+        $.post("../admin/getCurAdmin",function(obj){
+            $("#curName").html(obj.adminName);
+        },"json")
+
+        //全选
+        $('table th input:checkbox').on('click', function () {
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+        });
+
+        //选项卡内容
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+            var off2 = $source.offset();
+            var w2 = $source.width();
+            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+            return 'left';
+        }
+    })
+
+    function exit() {
+        if(confirm("您确定要退出吗？")) {
+            $.post("../admin/clearAdmin",function(){
+                window.location.href="/admin_login.html";
+            })
+        }
+    }
+</script>
+<script type="text/javascript">
+    var status;
+    var level;
+    $(function(){
+        $("#dealersStatus").change(function(){
+            status = $(this).val();
+            if(status==3){
+                $("#dealersAuthorizationCode").attr("disabled","disabled");
+            }else {
+                $("#dealersAuthorizationCode").removeAttr("disabled");
+            }
+        });
+    });
+
+    $(function(){
+        $("#dealersLevel").change(function(){
+            level = $(this).val();
+            if(level==3){
+                $("#dealersAuthorizationCode").attr("disabled","disabled");
+            }else {
+                $("#dealersAuthorizationCode").removeAttr("disabled");
+            }
+        });
+    });
+
+    $("#addDealer").click(function () {
+
+            var data = $("#toAddDealers").serialize();
+            alert(data);
+            $.ajax({
+                type:'post',
+                url:"../dealer/addDealers",
+                data:data,  //重点必须为一个变量如：data
+                dataType:'json',
+
+                success:function(data){
+                    alert(data);
+                },
+                error:function(){
+                   alert(111);
+                }
+            })
+    });
+
+
+
+</script>
+</body>
+</html>

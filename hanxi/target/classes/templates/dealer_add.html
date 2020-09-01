@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>韩曦经销商管理端</title>
+
+    <!-- Google font file. If you want you can change. -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900" rel="stylesheet">
+
+    <!-- Fontawesome font file css -->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+
+    <!-- Template global css file. Requared all pages -->
+    <link rel="stylesheet" type="text/css" href="../static/css/global.style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div class="nav-menu">
+        <nav class="menu">
+
+            <!-- Menu navigation start -->
+            <div class="nav-container">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="dealer_index.html"><img src="../static/img/content/icons/1.png" alt=""><strong class="special">主页</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_list.html"><img src="../static/img/content/icons/2.png" alt=""><strong class="special">经销商管理</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);"><img src="../static/img/content/icons/3.png" alt=""><strong class="special">订单管理</strong> <span class="fa fa-angle-down"></span></a>
+                        <ul>
+                            <li><a href="dealer_orders.html" data-loader="show">我的订单</a></li>
+                            <li><a href="dealer_sendorders.html" data-loader="show">发货订单</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="dealer_add_product2.html"><img src="../static/img/content/icons/6.png" alt=""><strong class="special">入库管理</strong> </a>
+                    </li>
+                    <li>
+                        <a href="dealer_code.html"><img src="../static/img/content/icons/10.png" alt=""><strong class="special">生成授权码</strong></a>
+                    </li>
+                    <li>
+                        <a href="dealer_Fleeing.html"><img src="../static/img/content/icons/4.png" alt=""><strong class="special">防伪/窜货查询</strong></a>
+                    </li>
+                    <li class="">
+                        <a href="dealer_Info.html"><img src="../static/img/content/icons/5.png" alt=""><strong class="special">个人中心</strong> </a>
+                    </li>
+                    <li class="">
+                        <a href="setting.html"><img src="../static/img/content/icons/11.png" alt=""><strong class="special">设置</strong> </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- Menu navigation end -->
+        </nav>
+    </div>
+    <div class="wrapper-inline">
+        <!-- Header area start -->
+        <header> <!-- extra class no-background -->
+            <a class="go-back-link" href="javascript:history.back();"><i class="fa fa-arrow-left"></i></a>
+            <h1 class="page-title">韩曦经销商管理</h1>
+            <div class="navi-menu-button">
+                <em></em>
+                <em></em>
+                <em></em>
+            </div>
+        </header>
+        <!-- Header area end -->
+        <!-- Page content start -->
+        <main>
+
+            <div class="container">
+
+                <div class="form-divider"></div>
+                <div class="form-label-divider"><span>添加下级代理</span></div>
+                <div class="form-divider"></div>
+                <form id="addDealer">
+                    <div class="form-row-group with-icons">
+                        <div class="form-row no-padding">
+                            <i class="fa fa-user"></i>
+                            <input id="dealerName" type="text" name="dealerName" class="form-element" placeholder="姓名">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-lock"></i>
+                            <input id="dealerPassword"  type="password" name="dealerPassword" class="form-element" placeholder="密码">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-mobile"></i>
+                            <input id="phone" type="text" name="phone" class="form-element" placeholder="手机号">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div id="sex" class="form-row no-padding">
+                            <label class="fa fa-intersex"></label>
+                            <label>
+                                <input name="gender" type="radio" value="男"/>男
+                                <input name="gender" type="radio" value="女"/>女
+                            </label>
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-tag"></i>
+                            <input id="fatherId" type="password" name="fatherId" class="form-element" placeholder="上级经销商">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-clone"></i>
+                            <select id="levelName" name="levelName" class="form-element">
+                                <option value="" selected>经销商等级名称</option>
+                                <option value="一级">一级</option>
+                                <option value="二级">二级</option>
+                                <option value="三级">三级</option>
+                            </select>
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-bookmark-o"></i>
+                            <select id="level" name="level" class="form-element">
+                                <option value="" selected>等级</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-lock"></i>
+                            <input id="grantCode" type="password" name="grantCode" class="form-element" placeholder="授权码">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+
+                        <div class="form-row no-padding">
+                            <i class="fa fa-check-square-o"></i>
+                            <input type="text" id="address" name="address" class="form-element" placeholder="地址">
+                        </div>
+
+                        <div class="form-mini-divider"></div>
+                    </div>
+                    <div class="form-row">
+                        <a id="add" href="#"class="button circle block blue">添加</a>
+                    </div>
+                    <div class="form-divider"></div>
+                </form>
+            </div>
+
+            <footer>
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p>Copyright © All Right <a href="#" title="jq22">Reserved</a></p>
+                </div>
+            </footer>
+        </main>
+        <!-- Page content end -->
+    </div>
+</div>
+
+<!--Page loader DOM Elements. Requared all pages-->
+<div class="sweet-loader">
+    <div class="box">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</div>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/vue.js"></script>
+<script>
+    $(function () {
+        $("#add").click(function () {
+            $.ajax({
+                type:'post',
+                url:"dealer/addDealer",
+                data:$('#addDealer').serialize(),
+                success:function (result) {
+                    if (result==1){
+                        alert("添加成功");
+                        window.location.href="dealer_list.html";
+                    }
+                    else{
+                        alert("添加失败");
+                        window.location.href="dealer_add.html";
+                    }
+
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>涵曦后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/adminList.showInfo.css">
+    <link rel="stylesheet" href="../static/css/common.showInfo.css">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/font-awesome-ie7.min.css"/>
+    <link rel="stylesheet" href="../static/css/ace.min.css"/>
+    <link rel="stylesheet" href="../static/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="../static/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="../static/css/ace-ie.min.css"/>
+    <link rel="stylesheet" href="../static/css/layui.css">
+
+    <script src="../static/js/ace-extra.min.js"></script>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+</head>
+<body>
+<!--导航栏-->
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="icon-leaf"></i>
+                    涵曦后台管理
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="../static/img/content/avatar/user-1.png" alt="Jason's Photo"/>
+                        <span class="user-info">
+									<small>Welcome,</small>
+									<span id="curName">请登录</span>
+								</span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="icon-cog"></i>
+                                设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:exit();">
+                                <i class="icon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+
+<!--主体内容-->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <div class="sidebar" id="sidebar">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'fixed')
+                } catch (e) {
+                }
+            </script>
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="icon-signal"></i>
+                    </button>
+                    <button class="btn btn-info">
+                        <i class="icon-pencil"></i>
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="icon-group"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="icon-cogs"></i>
+                    </button>
+                </div>
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+                    <span class="btn btn-info"></span>
+                    <span class="btn btn-warning"></span>
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- #sidebar-shortcuts -->
+            <ul class="nav nav-list">
+                <li>
+                    <a href="admin_index.html">
+                        <i class="icon-dashboard"></i>
+                        <span class="menu-text"> 主页 </span>
+                    </a>
+                </li>
+                <li class="active open">
+                    <a href="admin-dealer_list.html" class="dropdown-toggle">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text"> 管理员 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li class="active">
+                            <a href="admin_list.html">
+                                <i class="icon-double-angle-right"></i>
+                                管理员列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_addAdmins.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加管理员
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 经销商 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin-dealer_list.html">
+                                <i class="icon-double-angle-right"></i>
+                                经销商列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_addDealers.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加经销商
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li >
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list-alt"></i>
+                        <span class="menu-text"> 商品 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                商品列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_product.html">
+                                <i class="icon-double-angle-right"></i>
+                                添加商品
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-edit"></i>
+                        <span class="menu-text"> 订单 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="admin_orders.html">
+                                <i class="icon-double-angle-right"></i>
+                                全部订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=未发货">
+                                <i class="icon-double-angle-right"></i>
+                                未发货订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=已发货">
+                                <i class="icon-double-angle-right"></i>
+                                已发货订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=已完成">
+                                <i class="icon-double-angle-right"></i>
+                                已完成订单
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_orders.html?state=异常">
+                                <i class="icon-double-angle-right"></i>
+                                异常订单
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 更多 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="faq.html">
+                                <i class="icon-double-angle-right"></i>
+                                帮助
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.nav-list -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                   data-icon2="icon-double-angle-right"></i>
+            </div>
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'collapsed')
+                } catch (e) {
+                }
+            </script>
+        </div>
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('breadcrumbs', 'fixed')
+                    } catch (e) {
+                    }
+                </script>
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home home-icon"></i>
+                        <a href="#">主页</a>
+                    </li>
+                    <li>
+                        <a href="#">管理员</a>
+                    </li>
+                    <li class="active">管理员列表</li>
+                </ul><!-- .breadcrumb -->
+                <!--搜索框-->
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input"
+                                           id="nav-search-input" autocomplete="off"/>
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div><!-- #nav-search -->
+            </div>
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!--页面内容开始 -->
+
+                        <div id="main">
+                            <div class="search">
+                                <form id="searchForm" action="#" method="post" onsubmit="return false">
+                                    <div class="layui-form-item" >
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <select name="type" id="type">
+                                                    <option value="" selected=""></option>
+                                                    <option value="Id">Id</option>
+                                                    <option value="admin_name">姓名</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="key" id="key" autocomplete="off" placeholder="请输入关键词" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <div class="layui-input-block">
+                                                <button type="submit" class="layui-btn" lay-submit="" @click="searchByTypeAndKey">搜索</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="center">
+                                            <label>
+                                                <input @click="selectAll" type="checkbox" class="ace"/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th>Id</th>
+                                        <th>管理员姓名</th>
+                                        <th class="hidden-480">密码</th>
+                                        <th>操作
+                                            <button class="btn btn-sm btn-danger" @click="deleteManyAdmin">
+                                                批量删除
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="r in lists">
+                                    <td class="center">
+                                        <label>
+                                            <input type="checkbox" name="adminlist" class="ace" :value="r.id"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <a href="#">{{r.id}}</a>
+                                    </td>
+                                    <td>{{r.adminName}}</td>
+                                    <td class="hidden-480">{{r.adminPassword}}</td>
+                                    <td>
+                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                            <button class="btn btn-xs btn-success">
+                                                <i class="icon-ok bigger-120"></i>
+                                            </button>
+                                            <button class="btn btn-xs btn-info" v-on:click="showInfo(r)">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </button>
+                                            <button class="btn btn-xs btn-danger" @click="deleteOneAdmin(r.id)">
+                                                <i class="icon-trash bigger-120"></i>
+                                            </button>
+                                            <button class="btn btn-xs btn-warning">
+                                                <i class="icon-flag bigger-120"></i>
+                                            </button>
+                                        </div>
+                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <i class="icon-cog icon-only bigger-110"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="#" class="tooltip-info" data-rel="tooltip"
+                                                           title="View">
+																				<span class="blue">
+																					<i class="icon-zoom-in bigger-120"></i>
+																				</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="tooltip-success" data-rel="tooltip"
+                                                           title="Edit">
+																				<span class="green">
+																					<i class="icon-edit bigger-120"></i>
+																				</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="tooltip-error" data-rel="tooltip"
+                                                           title="Delete">
+																				<span class="red">
+																					<i class="icon-trash bigger-120"></i>
+																				</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.table-responsive -->
+                        <nav aria-label="Page navigation" class="text-center">
+                                <ul class="pagination">
+                                    <li v-on:click="prePage()">
+                                        <a aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li v-for="index in page.pages"
+                                        v-on:click="curPage(index)"
+                                        :class="page.pageNo==index? 'active':''">
+                                        <a>{{index}}</a>
+                                    </li>
+                                    <li v-on:click="nextPage()">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+
+    <div class="showInfo" id="showInfo">
+        <div class="content">
+            <div class="info_header">
+                <h4>管理员信息</h4>
+                <div id="header-right" onclick="hidder()">X</div>
+            </div>
+            <hr/>
+            <div class="info">
+                <input type="hidden" id="id">
+                <table>
+                    <tr>
+                        <td> <label>用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label></td>
+                        <td><input type="text" id="adminName"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</label></td>
+                        <td><input type="password" id="password"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>确&nbsp;&nbsp;&nbsp;认&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</label></td>
+                        <td><input type="password" id="ConfirmPassword"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="btn btn-primary" onclick="changeInfo()">修改</button></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- basic scripts -->
+<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../static/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
+</script>
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script src='../static/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="../static/js/typeahead-bs2.min.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/jquery.dataTables.bootstrap.js"></script>
+<script src="../static/js/ace-elements.min.js"></script>
+<script src="../static/js/ace.min.js"></script>
+<script src="../static/vue/qs.min.js"></script>
+<script src="../static/vue/vue.js"></script>
+<script src="../static/vue/axios.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.getJSON('admin/admin_list', function (result, status) {
+            var v = new Vue({
+                el: '#main',
+                data: {
+                    rows: result,
+                    toSelect:[],
+                    lists:[],  //列表数据
+                    page:{
+                        pages:1,   //总页数
+                        total:1,        //总条数
+                        pageNo:1,      //页码
+                        pageSize:5,    //每页的条数
+                    }
+                },
+                methods:{
+                    getLists:function (i) {
+                        this.page.pageNo=i || this.page.pageNo;
+                        axios({
+                            method:"get",
+                            url:"http://localhost:8080/admin/adminPageHelper?pageNum="+this.page.pageNo+"&pageSize=5"
+                        }).then(res=>{
+                            console.log(res);
+                            this.lists=res.data.list;    //列表数据
+                            this.page.pages=res.data.pages;  //总页数
+                            this.page.total=res.data.total;    //总条数
+                        }).catch(function (error) {
+                            console.log("请求失败")
+                        })
+                    },
+                    curPage:function(index) {   //当前页
+                        this.getLists(index);
+                    },
+                    prePage:function() {   //上一页
+                        if (this.page.pageNo>1){
+                            this.page.pageNo--;
+                            this.getLists(this.page.pageNo);
+                        }
+                    },
+                    nextPage:function() {   //下一页
+                        if (this.page.pageNo<this.page.pages){
+                            this.page.pageNo++;
+                            this.getLists(this.page.pageNo);
+                        }
+                    },
+                      showInfo:function (e) {
+                            console.log(e);
+                            document.getElementById('showInfo').style.display = "inline";
+                            document.getElementById('id').value = e.id;
+                            document.getElementById('adminName').value = e.adminName;
+                            document.getElementById('password').value = e.password;
+                    },
+                    searchByTypeAndKey(){
+                        var type = $("#type option:selected").val();
+                        var searchKey = $('#key').val();
+
+                        alert("type:" + type+ "searchkey:" +searchKey);
+                        axios.get('http://localhost:8080/admin/getAdminListByKey?type='+type+'&key='+searchKey).then(data =>{
+                            console.log(data);
+                            this.lists = data.data;
+                        }).catch(error => {
+                            console.log(error);
+                        })
+                    },
+                    selectAll(event){
+                        let theSelect = document.getElementsByName("adminlist");
+                        if (event.target.checked){
+                            for (let i=0;i<theSelect.length;i++){
+                                theSelect[i].checked = true;
+                                this.toSelect.push(theSelect[i].value);
+                            }
+                        }else {
+                            this.selectNone(theSelect);
+                        }
+                    },
+                    selectNone(noneSelect){
+                        for (let i=0;i<noneSelect.length;i++){
+                            noneSelect[i].checked = false;
+                            this.toSelect.length=0;
+                        }
+                    },
+                    deleteManyAdmin(){
+                        let theSelect = document.getElementsByName("adminlist");
+                        for (let i=0;i<theSelect.length;i++){
+                            if (theSelect[i].checked){
+                                this.toSelect.push(theSelect[i].value);
+                            }
+                        }
+                        if (this.toSelect.length!=0)
+                        {
+                            let qs = Qs;
+                            axios.post('http://localhost:8080/admin/deleteAllAdmin',qs.stringify(
+                                {
+                                    delete:this.toSelect
+                                },{ indices: false}
+                            )).then(data => {
+                                this.lists = data.data;
+                                this.selectNone(theSelect);
+
+                            }).catch(error => {
+                                console.log(error);
+                            })
+                        }
+                    },
+                    deleteOneAdmin(id){
+                        axios.post('http://localhost:8080/admin/deleteOneAdmin',{
+                            id:id
+                        }).then(data => {
+                            this.lists = data.data;
+                            let theSelect = document.getElementsByName("adminlist");
+                            this.selectNone(theSelect);
+                        }).catch(error =>{
+                            console.log(error);
+                        })
+                    }
+                },
+                mounted:function () {
+                    this.getLists();
+                }
+            });
+        });
+    });
+
+
+    function hidder(){
+        document.getElementById('showInfo').style.display = "none";
+    }
+
+
+
+
+    function changeInfo() {
+        var admin = {};
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('ConfirmPassword').value;
+        if(password!=confirmPassword){
+            alert("两次输入的密码不一致！");
+        }else{
+            admin.id = document.getElementById('id').value;
+            admin.adminName = document.getElementById('adminName').value;
+            admin.adminPassword = password;
+            document.getElementById('showInfo').style.display="none";
+            var json = JSON.stringify(admin);
+            $.ajax({
+                type:'post',
+                url:'admin/updateAdmin',
+                contentType:'application/json;charset=utf-8',
+                data:json,
+                success:function(data){
+                    //console.log(data);
+                    if(data === "修改成功"){
+                        window.location.href="admin_list.html";
+                    }
+                },
+                error:function(err){
+
+                }
+            })
+        }
+
+    }
+
+
+
+</script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+
+        $.post("../admin/getCurAdmin",function(obj){
+            $("#curName").html(obj.adminName);
+        },"json");
+        //全选
+        $('table th input:checkbox').on('click', function () {
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+        });
+
+        //选项卡内容
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+            var off2 = $source.offset();
+            var w2 = $source.width();
+            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+            return 'left';
+        }
+    })
+    //退出
+    function exit() {
+        if(confirm("您确定要退出吗？")) {
+            $.post("../admin/clearAdmin",function(){
+                window.location.href="/admin_login.html";
+            })
+        }
+    }
+</script>
+</body>
+</html>
